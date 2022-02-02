@@ -3,7 +3,7 @@ const NUM_MINES = 10
 const checkIfArrayInArrayOfArrays = (pos, arrayOfArrays) => {
     for (let i = 0; i < arrayOfArrays.length; i++) {
         let matches = 0
-        for (let j = 0; j < pos.length; j++) {
+        for (let j = 0; j < 2; j++) {
             if (arrayOfArrays[i][j] == pos[j]) {
                 matches += 1
             }
@@ -29,13 +29,25 @@ const generateArrayOfRandomPositions = (board) => {
     return randomNumbersArray
 }
 
+const calcTotalMines = (board) => {
+    let tmpSum = 0
+    for (let i = 1; i < board.length - 1; i++) {
+        for (let j = 1; j < board.length - 1; j++) {
+            if (board[i][j].isMine) {
+                tmpSum += 1
+            }
+        }
+    }
+    return tmpSum
+}
+
 const generateMines = (board) => {
 
     let arr = generateArrayOfRandomPositions(board)
 
     for (let i = 1; i < board.length - 1; i++) {
         for (let j = 1; j < board.length - 1; j++) {
-            const pos = [i, j]
+            let pos = [i, j]
             if (checkIfArrayInArrayOfArrays(pos, arr)) {
                 board[i][j].isMine = true
                 const index = arr.indexOf(pos)

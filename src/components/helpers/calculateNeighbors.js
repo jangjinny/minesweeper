@@ -10,7 +10,6 @@ const DIRECTIONS = [
 ]
 
 const calculateNeighbours = (board) => {
-
     for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < board.length; j++) {
             let numOfMines = 0
@@ -31,6 +30,8 @@ const calculateNeighbours = (board) => {
     return
 
 }
+
+
 
 export default calculateNeighbours
 // [
